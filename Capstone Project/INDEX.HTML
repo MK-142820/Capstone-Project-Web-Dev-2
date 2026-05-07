@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MediCare Pro - Healthcare Appointment System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0f172a;
+  color:white;
+  transition:0.4s;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  width:100%;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(15,23,42,0.95);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #1e293b;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+  color:#38bdf8;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  color:#e2e8f0;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.theme-btn{
+  background:linear-gradient(45deg,#06b6d4,#3b82f6);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  width:100%;
+  height:90vh;
+  background:
+  linear-gradient(rgba(2,6,23,0.7),rgba(2,6,23,0.8)),
+  url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1400&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero-content h1{
+  font-size:60px;
+  margin-bottom:20px;
+  color:#38bdf8;
+}
+
+.hero-content p{
+  font-size:20px;
+  max-width:800px;
+  line-height:1.7;
+  margin:auto;
+  color:#cbd5e1;
+}
+
+.hero-content button{
+  margin-top:25px;
+  padding:14px 28px;
+  font-size:16px;
+}
+
+/* ================= SECTIONS ================= */
+
+.section{
+  padding:70px 8%;
+}
+
+.section-title{
+  font-size:40px;
+  margin-bottom:40px;
+  color:#38bdf8;
+  text-align:center;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.stat-card{
+  background:rgba(15,23,42,0.7);
+  padding:30px;
+  border-radius:18px;
+  border:1px solid #1e293b;
+  text-align:center;
+  transition:0.3s;
+}
+
+.stat-card:hover{
+  transform:translateY(-8px);
+}
+
+.stat-card h2{
+  font-size:40px;
+  color:#38bdf8;
+}
+
+.stat-card p{
+  margin-top:10px;
+  color:#cbd5e1;
+}
+
+/* ================= DOCTORS ================= */
+
+.doctors{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.doctor-card{
+  background:rgba(15,23,42,0.7);
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #1e293b;
+  transition:0.4s;
+}
+
+.doctor-card:hover{
+  transform:translateY(-10px);
+}
+
+.doctor-card img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+}
+
+.doctor-info{
+  padding:20px;
+}
+
+.doctor-info h3{
+  color:#38bdf8;
+  margin-bottom:8px;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 12px;
+  background:#0ea5e9;
+  border-radius:30px;
+  font-size:14px;
+}
+
+/* ================= FORM ================= */
+
+.form-container{
+  max-width:900px;
+  margin:auto;
+  background:rgba(15,23,42,0.7);
+  padding:35px;
+  border-radius:20px;
+  border:1px solid #1e293b;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#020617;
+  color:white;
+  font-size:15px;
+}
+
+textarea{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#020617;
+  color:white;
+  min-height:120px;
+}
+
+button{
+  padding:14px 22px;
+  border:none;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+  background:linear-gradient(45deg,#06b6d4,#3b82f6);
+  font-weight:600;
+  transition:0.3s;
+}
+
+button:hover{
+  opacity:0.85;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+  max-width:500px;
+  margin:0 auto 25px;
+}
+
+/* ================= TABLE ================= */
+
+.table-container{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:rgba(15,23,42,0.7);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+th{
+  background:#0284c7;
+}
+
+th,td{
+  padding:16px;
+  text-align:center;
+  border-bottom:1px solid #334155;
+}
+
+tr:hover{
+  background:rgba(56,189,248,0.08);
+}
+
+/* ================= STATUS ================= */
+
+.status{
+  padding:7px 14px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.confirmed{
+  background:rgba(34,197,94,0.2);
+  color:#22c55e;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  margin-top:60px;
+  padding:30px;
+  text-align:center;
+  background:#020617;
+  border-top:1px solid #1e293b;
+}
+
+/* ================= LIGHT MODE ================= */
+
+.light{
+  background:#f8fafc;
+  color:#020617;
+}
+
+.light .navbar,
+.light .doctor-card,
+.light .stat-card,
+.light .form-container,
+.light table{
+  background:white;
+  color:black;
+}
+
+.light input,
+.light textarea,
+.light select{
+  background:white;
+  color:black;
+}
+
+.light .nav-links a{
+  color:black;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.hero-content h1{
+  font-size:40px;
+}
+
+.section-title{
+  font-size:32px;
+}
+
+.nav-links{
+  display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+  <div class="logo">🏥 MediCare Pro</div>
+
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Doctors</a>
+    <a href="#">Appointments</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <button class="theme-btn" onclick="toggleTheme()">
+    🌙 Theme
+  </button>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h1>Advanced Healthcare Management</h1>
+
+    <p>
+      Smart AI-powered healthcare appointment management system
+      with modern UI, doctor profiles, appointment tracking,
+      dynamic search, analytics dashboard and responsive design.
+    </p>
+
+    <button onclick="scrollToBooking()">
+      Book Appointment
+    </button>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="section">
+
+<h2 class="section-title">Healthcare Analytics</h2>
+
+<div class="stats">
+
+  <div class="stat-card">
+    <h2 id="appointmentCount">0</h2>
+    <p>Total Appointments</p>
+  </div>
+
+  <div class="stat-card">
+    <h2>24/7</h2>
+    <p>Emergency Support</p>
+  </div>
+
+  <div class="stat-card">
+    <h2>50+</h2>
+    <p>Expert Doctors</p>
+  </div>
+
+  <div class="stat-card">
+    <h2>98%</h2>
+    <p>Patient Satisfaction</p>
+  </div>
+
+</div>
+
+</section>
+
+<!-- DOCTORS -->
+
+<section class="section">
+
+<h2 class="section-title">Our Specialists</h2>
+
+<div class="doctors">
+
+  <div class="doctor-card">
+
+    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=900&auto=format&fit=crop">
+
+    <div class="doctor-info">
+      <h3>👨‍⚕️ Dr. Raj Sharma</h3>
+      <p>Senior Cardiologist with 15+ years experience.</p>
+      <span class="badge">Cardiology</span>
+    </div>
+
+  </div>
+
+  <div class="doctor-card">
+
+    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=900&auto=format&fit=crop">
+
+    <div class="doctor-info">
+      <h3>👩‍⚕️ Dr. Neha Mehta</h3>
+      <p>Dermatology specialist and skincare consultant.</p>
+      <span class="badge">Dermatology</span>
+    </div>
+
+  </div>
+
+  <div class="doctor-card">
+
+    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=900&auto=format&fit=crop">
+
+    <div class="doctor-info">
+      <h3>👨‍⚕️ Dr. Aamir Khan</h3>
+      <p>Neurologist expert in brain and nerve disorders.</p>
+      <span class="badge">Neurology</span>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- BOOKING -->
+
+<section class="section" id="bookingSection">
+
+<h2 class="section-title">Book Appointment</h2>
+
+<div class="form-container">
+
+<div class="form-grid">
+
+<input type="text" id="name" placeholder="Patient Name">
+
+<input type="number" id="age" placeholder="Age">
+
+<select id="gender">
+  <option value="">Select Gender</option>
+  <option>Male</option>
+  <option>Female</option>
+</select>
+
+<select id="doctor">
+  <option value="">Select Doctor</option>
+  <option>Dr. Raj Sharma</option>
+  <option>Dr. Neha Mehta</option>
+  <option>Dr. Aamir Khan</option>
+</select>
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+</div>
+
+<textarea id="problem" placeholder="Describe Your Problem"></textarea>
+
+<br><br>
+
+<button onclick="bookAppointment()">
+  Confirm Appointment
+</button>
+
+</div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="section">
+
+<h2 class="section-title">Appointment Dashboard</h2>
+
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="Search Patient..."
+    onkeyup="searchAppointment()"
+  >
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Patient</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<div class="footer">
+  © 2026 MediCare Pro | Advanced Healthcare Capstone Project
+</div>
+
+<script>
+
+let appointments = [];
+
+function render(){
+
+let html = "";
+
+if(appointments.length === 0){
+
+html = `
+<tr>
+<td colspan="8">
+No Appointments Found
+</td>
+</tr>
+`;
+
+}else{
+
+appointments.forEach((a,index)=>{
+
+html += `
+<tr>
+
+<td>${a.name}</td>
+<td>${a.age}</td>
+<td>${a.gender}</td>
+<td>${a.doctor}</td>
+<td>${a.date}</td>
+<td>${a.time}</td>
+
+<td>
+<span class="status confirmed">
+Confirmed
+</span>
+</td>
+
+<td>
+<button onclick="deleteAppointment(${index})">
+Cancel
+</button>
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
+document.getElementById("tableBody").innerHTML = html;
+
+document.getElementById("appointmentCount").innerText =
+appointments.length;
+
+}
+
+function bookAppointment(){
+
+let name =
+document.getElementById("name").value.trim();
+
+let age =
+document.getElementById("age").value;
+
+let gender =
+document.getElementById("gender").value;
+
+let doctor =
+document.getElementById("doctor").value;
+
+let date =
+document.getElementById("date").value;
+
+let time =
+document.getElementById("time").value;
+
+let problem =
+document.getElementById("problem").value;
+
+if(
+!name ||
+!age ||
+!gender ||
+!doctor ||
+!date ||
+!time ||
+!problem
+){
+
+alert("Please fill all fields");
+return;
+
+}
+
+appointments.push({
+name,
+age,
+gender,
+doctor,
+date,
+time,
+problem
+});
+
+alert("Appointment Confirmed Successfully!");
+
+clearForm();
+
+render();
+
+}
+
+function clearForm(){
+
+document.getElementById("name").value = "";
+document.getElementById("age").value = "";
+document.getElementById("gender").value = "";
+document.getElementById("doctor").value = "";
+document.getElementById("date").value = "";
+document.getElementById("time").value = "";
+document.getElementById("problem").value = "";
+
+}
+
+function deleteAppointment(index){
+
+if(confirm("Cancel Appointment?")){
+
+appointments.splice(index,1);
+
+render();
+
+}
+
+}
+
+function searchAppointment(){
+
+let input =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+let rows =
+document.querySelectorAll("#tableBody tr");
+
+rows.forEach((row)=>{
+
+let text =
+row.innerText.toLowerCase();
+
+row.style.display =
+text.includes(input)
+? ""
+: "none";
+
+});
+
+}
+
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+function scrollToBooking(){
+
+document
+.getElementById("bookingSection")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
